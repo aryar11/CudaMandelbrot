@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h> 
-#include "generateImage.h"
 #include <SDL2/SDL.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <getopt.h>
+#include "generateImage.h"
 
 /**
  * compute mandelbrot iteration counts on an width X height grid
@@ -74,32 +75,62 @@ double *compute_mandelbrot(int width, int height, int max_iter, double x_min, do
 
 static void usage(const char *prog){
     fprintf(stderr,
-        "Usage: %s [-w width] [-h height] [-i max_iter] [-s SS] [-c cuda]\n"
-        "Defaults: width=1280, height=720, max_iter=15, SS=2, cuda=false\n",
+        "Usage: %s [options]\n"
+        "Options:\n"
+        " -w, --width WIDTH  image width (default 800)\n"
+        " -h, --height HEIGHT image height (default 600)\n"
+        " -i, --max-iter ITERS max iterations (default 100)\n"
+        "-s, --supersample SS supersampling factor (default 2)\n"
+        "--xmin XMIN minimum x (default -2.0)\n"
+        " --xmax XMAX maximum x (default  1.0)\n"
+        "--ymin YMIN minimum y (default -1.0)\n"
+        "--ymax YMAX maximum y (default  1.0)\n"
+        "-c, --cuda use CUDA (default: off)\n"
+        "--help this message\n",
         prog);
     exit(1);
 }
 
 int main(int argc, char *argv[]){
-
     int width = 800, height = 600, max_iter = 100, SS = 2;
     double x_min = -2.0, x_max = 1.0, y_min = -1.0, y_max = 1.0;
-    int opt;
     bool cuda = false;
-    while ((opt = getopt(argc, argv, "w:h:i:s:c:")) != -1) {
+    static struct option opts[] = {
+        { "width", required_argument, NULL, 'w' },
+        { "height",required_argument, NULL,'h' },
+        { "max-iter",required_argument, NULL, 'i' },
+        { "supersample",required_argument, NULL,'s' },
+        { "xmin", required_argument, NULL, 0 },
+        { "xmax", required_argument, NULL, 1},
+        { "ymin", required_argument, NULL, 2},
+        { "ymax", required_argument, NULL, 3},
+        { "cuda", no_argument, NULL, 'c' },
+        { "help", no_argument, NULL,  4  },
+        { NULL,0,NULL,0 }
+    };
+
+    int opt, idx;
+    while ((opt = getopt_long(argc, argv, "w:h:i:s:c", opts, &idx)) != -1) {
         switch (opt) {
-            case 'w': width = atoi(optarg); break;
+            case 'w': width= atoi(optarg); break;
             case 'h': height = atoi(optarg); break;
             case 'i': max_iter = atoi(optarg); break;
             case 's': SS = atoi(optarg); break;
             case 'c': cuda = true; break;
+            case  0: x_min = atof(optarg); break;  // --xmin
+            case  1: x_max = atof(optarg); break;  // --xmax
+            case  2: y_min = atof(optarg); break;  // --ymin
+            case  3: y_max = atof(optarg); break;  // --ymax
+            case  4: /* --help */                 
             default:  usage(argv[0]);
         }
     }
-    if (width <= 0 || height <= 0 || max_iter <= 0)
+
+    if (width <= 0 || height <= 0 || max_iter <= 0 || SS <= 0)
+        usage(argv[0]);
+    if (x_min >= x_max || y_min >= y_max)
         usage(argv[0]);
 
     generate_image(width, height, max_iter,  x_min, x_max, y_min, y_max, SS, cuda);
-
     return 0;
 }
