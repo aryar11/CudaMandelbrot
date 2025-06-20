@@ -4,19 +4,19 @@ A Mandelbrot set visualizer and generator written in C and CUDA. Implemented CUD
 
 ## Features
 
-- **GPU Acceleration**: Leverages CUDA to compute the Mandelbrot set much faster than CPU-only solutions.
+- **GPU Acceleration**: Uses CUDA to compute the Mandelbrot set much faster than CPU-only implemenation
 - **Customizable Output**: Settings for image size, region of interest, optional CUDA usage. 
 
 ## Requirements
 
-- NVIDIA GPU with CUDA support (For CUDA useage)
+- NVIDIA GPU with CUDA support (For CUDA usage)
 - CUDA Toolkit
-- GCC or compatible C compiler
+- GCC
 - Make
 
 ## Build Instructions
 
-Clone the repository and build using the provided Makefile:
+Clone the repository and build using the makefile:
 
 ```bash
 git clone https://github.com/aryar11/CudaMandelbrot.git
