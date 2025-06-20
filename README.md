@@ -28,12 +28,6 @@ This will generate the executable
 
 ## Usage
 
-Basic usage example:
-
-```bash
-./mandelbrot [options]
-```
-
 Command-Line Options
 
 | Option                | Description                                | Default |
