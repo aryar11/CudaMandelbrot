@@ -24,7 +24,7 @@ cd CudaMandelbrot
 make
 ```
 
-This will generate the executable
+This will generate the executable ***mandelbrot***
 
 ## Usage
 
