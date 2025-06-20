@@ -63,7 +63,6 @@ double *compute_mandelbrot(int width, int height, int max_iter, double x_min, do
                     sum += iter;
                 }
             }
-
             //store the average iteration count for this pixel
             result[y * width + x] = sum * invSS2;
         }
@@ -121,7 +120,7 @@ int main(int argc, char *argv[]){
             case  1: x_max = atof(optarg); break;  // --xmax
             case  2: y_min = atof(optarg); break;  // --ymin
             case  3: y_max = atof(optarg); break;  // --ymax
-            case  4: /* --help */                 
+            case  4:                
             default:  usage(argv[0]);
         }
     }
