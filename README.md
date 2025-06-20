@@ -58,11 +58,11 @@ The program generates a SDL texture popup of a Mandelbrot set. The user is able 
 
 ### Example Output
 
-![image](exampleOutput.png)
+![image](media/exampleOutput.png)
 
 **Real time zooming in with cuda flag**
 
-![Zoom In Demo](zoomInExample.gif)
+![Zoom In Demo](media/zoomInExample.gif)
 
 ## CUDA Speedup
 
