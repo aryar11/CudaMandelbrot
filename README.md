@@ -67,11 +67,3 @@ convert output.ppm output.png
 ## Contributing
 
 Pull requests, bug reports, and feature suggestions are welcome! Please open an issue or submit a PR.
-
-## License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
----
-
-Let me know if you’d like to add usage examples, images, or further details!
