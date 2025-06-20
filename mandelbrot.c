@@ -10,16 +10,15 @@
 /**
  * compute mandelbrot iteration counts on an width X height grid
  *
- * @param width     self-explanatory
- * @param height    self-explanatory
- * @param max_iter  max number of iterations per point
- * @param x_min     min real coordinate
- * @param x_max     max real coord
- * @param y_min     min imaginary coord
- * @param y_max     max imaginary coord
- * @param SS        supersampling factor (1 = no supersampling)
- * @return          Pointer double array of length n*m,
- *                  where result[i*m + j] is the iteration count for row i, col j.
+ * width: self-explanatory
+ * height: self-explanatory
+ * max_iter: max number of iterations per point
+ * x_min: min real coordinate
+ * x_max: max real coord
+ * y_min: min imaginary coord
+ * y_max: max imaginary coord
+ * SS: supersampling factor (1 = no supersampling)
+ * return: Pointer double array of length n*m,  where result[i*m + j] is the iteration count for row i, col j.
  */
 double *compute_mandelbrot(int width, int height, int max_iter, double x_min, double x_max, double y_min, double y_max, int SS){
     if (width <= 0 || height <= 0 || max_iter <= 0 || SS <= 0) {
@@ -116,11 +115,11 @@ int main(int argc, char *argv[]){
             case 'i': max_iter = atoi(optarg); break;
             case 's': SS = atoi(optarg); break;
             case 'c': cuda = true; break;
-            case  0: x_min = atof(optarg); break;  // --xmin
-            case  1: x_max = atof(optarg); break;  // --xmax
-            case  2: y_min = atof(optarg); break;  // --ymin
-            case  3: y_max = atof(optarg); break;  // --ymax
-            case  4:                
+            case 0: x_min = atof(optarg); break; // --xmin
+            case 1: x_max = atof(optarg); break;// --xmax
+            case 2: y_min = atof(optarg); break; // --ymin
+            case 3: y_max = atof(optarg); break; // --ymax
+            case 4:                
             default:  usage(argv[0]);
         }
     }
