@@ -56,6 +56,10 @@ This command renders a Mandelbrot set with 500 iterations per point using CUDA w
 
 The program generates a SDL texture popup of a Mandelbrot set. The user is able to zoom in one time (via mouse scroll) and the set will regenerate with the new zoomed in field. Currently, there is a bug after 2 zoom in's the mandelbrot set does not properly display. 
 
+### Example Output
+
+![image](exampleOutput.png)
+
 ## File Structure
 
 - `mandelbrot.c` : Main program logic 
