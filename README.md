@@ -64,9 +64,9 @@ The program generates a SDL texture popup of a Mandelbrot set. The user is able 
 
 | Configuration                                 | Avg No-CUDA (s) | Avg CUDA (s) | Speedup (×) |
 | --------------------------------------------- | --------------- | ------------ | ----------- |
-| 1920×1080, 500 iters, SS=3        | 4.891           | 0.167        | 29.2        |
-| 1600×1200, 1000 iters, SS=1 | 2.631           | 0.093        | 28.4        |
-
+| 1920×1080, 500 iters, SS=3  | 4.891  | 0.167   | 29.2   |
+| 1600×1200, 1000 iters, SS=1 | 2.631    | 0.093     | 28.4     |
+| 1600×1200, 1000 iters, SS=4 | 41.682 | 0.654 | 63.7 |
 
 
 ## File Structure
