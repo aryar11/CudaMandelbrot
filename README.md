@@ -60,6 +60,9 @@ The program generates a SDL texture popup of a Mandelbrot set. The user is able 
 
 ![image](exampleOutput.png)
 
+<img src="zoomInExample.gif" alt="Zoom In Example" width="600"/>
+
+
 ## CUDA Speedup
 
 | Configuration                                 | Avg No-CUDA (s) | Avg CUDA (s) | Speedup (×) |

@@ -30,7 +30,7 @@ static void hsv_to_rgb(double h, double s, double v, Uint8 *out_r, Uint8 *out_g,
 
 
 
-void generate_image(int width, int height, int max_iter, int x_min, int x_max, int y_min, int y_max, int SS, bool cuda){
+void generate_image(int width, int height, int max_iter, double x_min, double x_max, double y_min, double y_max, int SS, bool cuda){
     //init SDL
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *win = SDL_CreateWindow("Mandelbrot Set", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
