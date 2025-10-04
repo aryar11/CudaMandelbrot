@@ -9,8 +9,7 @@
 
 /*
 * this function converts HSV color values to RGB.
-* h is in degrees [0,360), s and v are in [0,1.0].
-* out_r, out_g, out_b are the output RGB values in [0,255]     
+* out_r, out_g, out_b are the output RGB values  
 */
 static void hsv_to_rgb(double h, double s, double v, Uint8 *out_r, Uint8 *out_g, Uint8 *out_b){
     double c = v * s;
@@ -117,5 +116,6 @@ void generate_image(int width, int height, int max_iter, double x_min, double x_
     SDL_Quit();
     return;
 }
+
 
 
