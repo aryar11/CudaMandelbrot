@@ -2,15 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// CUDA kernel: compute one pixel's supersampled Mandelbrot average
+// compute one pixel's supersampled mandel average
 __global__ void mandelbrot_kernel(double *result, int width, int height, int max_iter, double x_min, double x_max, double y_min, double y_max, int SS){
 
     int px = blockIdx.x * blockDim.x + threadIdx.x;
     int py = blockIdx.y * blockDim.y + threadIdx.y;
     if (px >= width || py >= height) return;
     double dx = (x_max - x_min) / width;
-    double dy = (y_max - y_min) / height;
-    double invSS2 = 1.0 / (SS * SS);
+    double dy =(y_max - y_min) / height;
+    double invSS2 =1.0 / (SS * SS);
     double sum = 0.0;
 
     // unroll supersample loop
@@ -26,12 +26,11 @@ __global__ void mandelbrot_kernel(double *result, int width, int height, int max
             int iter = 0;
             double zx2 = 0.0;
             double zy2 = 0.0;
-
             while (zx2 + zy2 <= 4.0 && iter < max_iter) {
                 zy = 2.0 * zx * zy + cy;
                 zx = zx2 - zy2 + cx;
-                zx2 = zx * zx;
-                zy2 = zy * zy;
+                zx2 =zx * zx;
+                zy2 =zy * zy;
                 ++iter;
             }
             sum += iter;
@@ -56,7 +55,7 @@ extern "C" double* compute_mandelbrot_cuda( int width, int height, int max_iter,
     }
 
     double *d_result;
-    cudaMalloc(&d_result, bytes);
+    cudaMalloc(&d_result,bytes);
 
     dim3 block(16, 16);
     dim3 grid((width + block.x - 1) / block.x, (height + block.y - 1) / block.y);
@@ -67,3 +66,4 @@ extern "C" double* compute_mandelbrot_cuda( int width, int height, int max_iter,
     cudaFree(d_result);
     return h_result;
 }
+
