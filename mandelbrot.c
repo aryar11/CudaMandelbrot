@@ -17,8 +17,8 @@
  * x_max: max real coord
  * y_min: min imaginary coord
  * y_max: max imaginary coord
- * SS: supersampling factor (1 = no supersampling)
- * return: Pointer double array of length n*m,  where result[i*m + j] is the iteration count for row i, col j.
+ * SS: supersampling factor
+ * return: Pointer double array of length n*m
  */
 double *compute_mandelbrot(int width, int height, int max_iter, double x_min, double x_max, double y_min, double y_max, int SS){
     if (width <= 0 || height <= 0 || max_iter <= 0 || SS <= 0) {
@@ -94,16 +94,16 @@ int main(int argc, char *argv[]){
     double x_min = -2.0, x_max = 1.0, y_min = -1.0, y_max = 1.0;
     bool cuda = false;
     static struct option opts[] = {
-        { "width", required_argument, NULL, 'w' },
-        { "height",required_argument, NULL,'h' },
-        { "max-iter",required_argument, NULL, 'i' },
-        { "supersample",required_argument, NULL,'s' },
-        { "xmin", required_argument, NULL, 0 },
-        { "xmax", required_argument, NULL, 1},
-        { "ymin", required_argument, NULL, 2},
-        { "ymax", required_argument, NULL, 3},
-        { "cuda", no_argument, NULL, 'c' },
-        { "help", no_argument, NULL,  4  },
+        {"width", required_argument, NULL, 'w' },
+        {"height",required_argument, NULL,'h' },
+        {"max-iter",required_argument, NULL, 'i' },
+        {"supersample",required_argument, NULL,'s' },
+        {"xmin", required_argument, NULL, 0 },
+        {"xmax", required_argument, NULL, 1},
+        {"ymin", required_argument, NULL, 2},
+        {"ymax", required_argument, NULL, 3},
+        {"cuda", no_argument, NULL,'c'},
+        {"help", no_argument, NULL,  4  },
         { NULL,0,NULL,0 }
     };
 
@@ -115,10 +115,10 @@ int main(int argc, char *argv[]){
             case 'i': max_iter = atoi(optarg); break;
             case 's': SS = atoi(optarg); break;
             case 'c': cuda = true; break;
-            case 0: x_min = atof(optarg); break; // --xmin
-            case 1: x_max = atof(optarg); break;// --xmax
-            case 2: y_min = atof(optarg); break; // --ymin
-            case 3: y_max = atof(optarg); break; // --ymax
+            case 0: x_min = atof(optarg); break;
+            case 1: x_max = atof(optarg); break;
+            case 2: y_min = atof(optarg); break; 
+            case 3: y_max = atof(optarg); break; 
             case 4:                
             default:  usage(argv[0]);
         }
@@ -132,3 +132,4 @@ int main(int argc, char *argv[]){
     generate_image(width, height, max_iter,  x_min, x_max, y_min, y_max, SS, cuda);
     return 0;
 }
+
