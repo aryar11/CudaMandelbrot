@@ -41,7 +41,7 @@ Command-Line Options
 | `--ymin`              | Minimum y-coordinate of the viewing window | -1.0    |
 | `--ymax`              | Maximum y-coordinate of the viewing window | 1.0     |
 | `-c`, `--cuda`        | Enable CUDA acceleration                   | Off     |
-| `--help`              | Display usage message                      |         |
+| `--help`              | Display help message                       |         |
 
 
 Example:
